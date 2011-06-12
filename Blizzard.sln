@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonLib", "CommonLib.vcproj", "{463F072E-C754-4276-BA32-B3D82B98ED5B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E} = {233050EC-5EB3-4E6E-BAD3-C170236A869E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HostBot", "HostBot.vcproj", "{0108762A-743F-4624-A4BC-AC2C076BA6E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78424708-1F6E-4D4B-920C-FB6D26847055} = {78424708-1F6E-4D4B-920C-FB6D26847055}
+		{463F072E-C754-4276-BA32-B3D82B98ED5B} = {463F072E-C754-4276-BA32-B3D82B98ED5B}
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5} = {FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libevent", "libevent\libevent.vcproj", "{233050EC-5EB3-4E6E-BAD3-C170236A869E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mxml", "mxml\mxml.vcproj", "{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StormLib", "stormlib\StormLib.vcproj", "{78424708-1F6E-4D4B-920C-FB6D26847055}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Debug|Win32.Build.0 = Debug|Win32
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Debug|x64.ActiveCfg = Debug|Win32
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Release|Win32.ActiveCfg = Release|Win32
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Release|Win32.Build.0 = Release|Win32
+		{463F072E-C754-4276-BA32-B3D82B98ED5B}.Release|x64.ActiveCfg = Release|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Debug|Win32.Build.0 = Debug|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Debug|x64.ActiveCfg = Debug|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Release|Win32.ActiveCfg = Release|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Release|Win32.Build.0 = Release|Win32
+		{0108762A-743F-4624-A4BC-AC2C076BA6E6}.Release|x64.ActiveCfg = Release|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Debug|Win32.Build.0 = Debug|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Debug|x64.ActiveCfg = Debug|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Release|Win32.ActiveCfg = Release|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Release|Win32.Build.0 = Release|Win32
+		{233050EC-5EB3-4E6E-BAD3-C170236A869E}.Release|x64.ActiveCfg = Release|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Debug|Win32.Build.0 = Debug|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Debug|x64.ActiveCfg = Debug|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Release|Win32.ActiveCfg = Release|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Release|Win32.Build.0 = Release|Win32
+		{FA6092F6-EAA3-47BB-9CE7-C7A7D46D4DC5}.Release|x64.ActiveCfg = Release|Win32
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Debug|Win32.ActiveCfg = Debug|Win32
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Debug|Win32.Build.0 = Debug|Win32
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Debug|x64.ActiveCfg = Debug|x64
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Debug|x64.Build.0 = Debug|x64
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Release|Win32.ActiveCfg = Release|Win32
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Release|Win32.Build.0 = Release|Win32
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Release|x64.ActiveCfg = Release|x64
+		{78424708-1F6E-4D4B-920C-FB6D26847055}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
