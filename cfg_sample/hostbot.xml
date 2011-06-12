@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Admin Password='12345' />
+
+<Game SaveReplay='0' SyncLimit='40' Version='26' />
+
+<Auto Enable='0' Name='HostBot' MaxCount='5' DefaultMap='DotA672c' />
+
+<Network TcpPort='6112' UdpPort='6112' />
+
+<Scripts Path='scripts\126\' />
+
+<Maps>
+  <Map Name='DotA672c' Path='maps/DotA672c.w3x' FakePath='Maps/Download/DotA v6.72c.w3x' MinStartCount='6' Referee='1' />
+</Maps>
