@@ -50,7 +50,7 @@ namespace HostBot
 	void BotLoop::Run()
 	{
 		static GameTimer gametimer(this);
-		GameServer::GetSingleton().RegisterTimer(100, &gametimer);
+		GameServer::GetSingleton().RegisterTimer(80, &gametimer);
 
 		static PlayerTimer playertimer(this);
 		GameServer::GetSingleton().RegisterTimer(1000, &playertimer);

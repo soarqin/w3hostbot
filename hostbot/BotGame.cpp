@@ -420,7 +420,7 @@ namespace HostBot
 	void BotGame::BuildMapCheck( Common::Stream& st )
 	{
 		st<<(uint)1;
-		st<<_mapCfg->GetPath()<<_mapCfg->GetSize()<<_mapCfg->GetCRC()<<_mapCfg->GetHash();
+		st<<_mapCfg->GetFakePath()<<_mapCfg->GetSize()<<_mapCfg->GetCRC()<<_mapCfg->GetHash();
 		if(botCfg.GameVersion() >= 23)
 			st.append(_mapCfg->GetSHAHash(), 20);
 	}
