@@ -371,6 +371,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\plugins\gametcp\TcpMapProgress.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\plugins\gametcp\TcpMapProgress.h"
+					>
+				</File>
+				<File
 					RelativePath=".\plugins\gametcp\TcpMapSize.cpp"
 					>
 				</File>

@@ -24,6 +24,8 @@ namespace HostBot
 			if(_allReadyTime > 0 && tick - _allReadyTime >= 5120)
 			{
 				_allReadyTime = 0;
+				if(_needFake)
+					SendKickFake();
 				SendStartGame();
 			}
 			break;
@@ -59,6 +61,7 @@ namespace HostBot
 	BotGame::BotGame(uint id, std::string& gameName, std::string& hostName, MapCfg::Pointer cfg, BotGame::MapSpeed_t spd, BotGame::MapVis_t vis, BotGame::MapObs_t obs, uint flag): _mapCfg(cfg)
 	{
 		_allReadyTime = 0;
+		_needFake = true;
 		_lastLagCheckTime = _lastTrigTime = Common::GetTicks();
 		_id = id;
 		_firstPID = 0;
@@ -255,7 +258,8 @@ namespace HostBot
 			}
 		}
 
-		for(uint j = 0; j < 12; ++ j)
+		uint j = _needFake ? 1 : 0;
+		for(; j < 12; ++ j)
 		{
 			if(_players[j] == NULL)
 			{
@@ -305,6 +309,14 @@ namespace HostBot
 			}
 		}
 		return false;
+	}
+
+	void BotGame::SendKickFake()
+	{
+		Common::Stream st;
+		st<<(byte)1;
+		st<<(uint)13;
+		SendToAll(0x07F7, st);
 	}
 
 	void BotGame::Kick( uint s, uint reason )
@@ -375,6 +387,25 @@ namespace HostBot
 
 	void BotGame::GetSlotInfo( Common::Stream& st )
 	{
+		if(_needFake)
+		{
+			st<<(ushort)(7 + 9 * _totalSlots)<<(byte)_totalSlots;
+			for(size_t i = 0; i < _totalSlots - 1; ++ i)
+			{
+				_slots[i].GetSlotData(st);
+			}
+
+			// Fake slot
+			st<<(byte)1<<(byte)100<<(byte)2<<(byte)0<<_slots[_totalSlots - 1].GetTeam()<<(byte)11<<(byte)0x60<<(byte)1<<(byte)100;
+
+			st<<_randomSeed;
+			if(_mapCfg->GetSavedGame())
+				st<<_mapCfg->GetSelectMode();
+			else
+				st<<(byte)(_gameType == 1 ? 3 : 0);
+			st<<(byte)_mapCfg->GetNumPlayers();
+			return;
+		}
 		st<<(ushort)(7 + 9 * _totalSlots)<<(byte)_totalSlots;
 		for(size_t i = 0; i < _totalSlots; ++ i)
 		{
@@ -413,6 +444,14 @@ namespace HostBot
 					}
 					SendToAll(0x06F7, pst, i);
 				}
+			}
+			else if(i == 0 && _needFake)
+			{
+				// send fake player info
+				Common::Stream st;
+				const struct sockaddr_in addr = {0};
+				st<<(uint)2<<(byte)1<<"Host Bot Dummy"<<(ushort)1<<addr<<addr;
+				p.Send(0x06F7, st);
 			}
 		}
 	}
@@ -982,6 +1021,10 @@ namespace HostBot
 		if(_freeSlots != c)
 		{
 			_freeSlots = c;
+			bool onf = _needFake;
+			_needFake = _players[0] == NULL && _freeSlots + 1 >= _totalSlots;
+			if(onf && !_needFake)
+				SendKickFake();
 			BroadcastSlotInfo();
 		}
 	}

@@ -53,6 +53,7 @@ namespace HostBot
 		void TimerCheck(uint);
 		void SendUDPInfo(uint, ushort);
 		bool ApplyNewSlot(Player *, byte);
+		void SendKickFake();
 		void Kick(uint, uint = 7);
 		void GetSlotInfo(Common::Stream& st);
 		void SendSlotInfo();
@@ -112,6 +113,7 @@ namespace HostBot
 		uint _lastTrigTime;
 		uint _lastLagCheckTime;
 		uint _allReadyTime;
+		bool _needFake;
 
 		std::list< std::vector<byte> > _actions;
 
