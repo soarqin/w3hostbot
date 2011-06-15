@@ -258,6 +258,10 @@ namespace HostBot
 			}
 		}
 
+		bool onf = _needFake;
+		_needFake = _players[0] == NULL && _freeSlots >= _totalSlots;
+		if(onf && !_needFake)
+			SendKickFake();
 		uint j = _needFake ? 1 : 0;
 		for(; j < 12; ++ j)
 		{
@@ -313,10 +317,16 @@ namespace HostBot
 
 	void BotGame::SendKickFake()
 	{
-		Common::Stream st;
-		st<<(byte)1;
-		st<<(uint)13;
-		SendToAll(0x07F7, st);
+		Common::Stream st, st2;
+		st<<(byte)1<<(uint)13;
+		GetSlotInfo(st2);
+		for(int i = 1; i < 12; ++ i)
+		{
+			if(_players[i] == NULL)
+				continue;
+			_players[i]->Send(0x07F7, st);
+			_players[i]->Send(0x09F7, st2);
+		}
 	}
 
 	void BotGame::Kick( uint s, uint reason )
@@ -586,6 +596,11 @@ namespace HostBot
 			{
 				if(i == _totalSlots)
 					i = 0;
+				if(_needFake && i == _totalSlots - 1)
+				{
+					i = 0;
+					continue;
+				}
 				if(_slots[i].GetSlotStatus() == GameSlot::SLOTSTATUS_OPEN && _slots[i].GetTeam() == v)
 				{
 					byte opid = _slots[id - 1].GetPID();
